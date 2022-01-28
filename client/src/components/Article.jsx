@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 import { ApiAction } from "../redux/actions/ApiAction";
 
 const Article = ({ article }) => {
-  const { data, error, loading } = useSelector((state) => state.api);
+  const { data } = useSelector((state) => state.api);
   const dispatch = useDispatch();
 
   const handleDeleteArticle = async (id) => {
     try {
       await axios
-        .delete(`http://localhost:8000/delete-article/${id}`)
+        .delete(`http://127.0.0.1:8000/delete-article/${id}`)
         .then((res) => {
           console.log(res);
           console.log("ooooooooops yes");

@@ -3,15 +3,11 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { ApiAction } from "../redux/actions/ApiAction";
 
 const AddArticle = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const { data, error, loading } = useSelector((state) => state.api);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,10 +18,8 @@ const AddArticle = () => {
     };
     try {
       await axios
-        .post("http://localhost:8000/new-article/", postData)
+        .post("http://localhost:8000/new-article", postData)
         .then((res) => {
-          console.log(res);
-          dispatch(ApiAction([...data, res.data]));
           navigate("/");
         })
         .catch((err) => {

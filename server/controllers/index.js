@@ -11,8 +11,7 @@ exports.getIndex = async (req, res) => {
 
 exports.deleteArticle = async (req, res) => {
   try {
-    await Articles.findByIdAndRemove({ _id: req.params.id });
-    res.status(200);
+    await Articles.findByIdAndDelete({ _id: req.params.id });
   } catch (err) {
     // res.send(err);
     console.log(err);

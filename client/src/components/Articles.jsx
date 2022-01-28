@@ -7,8 +7,8 @@ const Articles = () => {
 
   return (
     <div>
-      {state.data?.map((item) => {
-        return <Article key={item?._id} article={item} />;
+      {state.data?.map((item,index) => {
+        return <Article key={index} article={item} />;
       })}
     </div>
   );
