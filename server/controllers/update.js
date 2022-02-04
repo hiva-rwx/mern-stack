@@ -5,7 +5,10 @@ exports.updateArticle = async (req, res) => {
     article.title = req.body.title;
     article.content = req.body.content;
     await article.save();
+    res.json();
   } catch (err) {
+    if (err) console.log(err);
     res.send(err);
+    return;
   }
 };

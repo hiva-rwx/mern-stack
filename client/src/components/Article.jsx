@@ -11,15 +11,12 @@ const Article = ({ article }) => {
   const handleDeleteArticle = async (id) => {
     try {
       await axios
-        .delete(`http://127.0.0.1:8000/delete-article/${id}`)
+        .delete(`http://localhost:8000/${id}`)
         .then((res) => {
-          console.log(res);
-          console.log("ooooooooops yes");
           const filterData = data.filter((i) => i._id !== id);
           dispatch(ApiAction(filterData));
         })
         .catch((err) => {
-          console.log("ooooooooops no");
           console.log(err);
         });
     } catch (err) {

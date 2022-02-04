@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 
 const UpdateArticle = () => {
@@ -10,13 +10,13 @@ const UpdateArticle = () => {
 
   const { data } = useSelector((state) => state.api);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const article = data?.find((a) => a?._id === id);
     setTitle(article?.title);
     setContent(article?.content);
   }, [data, id]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -27,6 +27,7 @@ const UpdateArticle = () => {
         })
         .then((res) => {
           console.log(res);
+          navigate("/");
         })
         .catch((err) => {
           console.log("error");
